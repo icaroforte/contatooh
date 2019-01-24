@@ -1,0 +1,44 @@
+<br>
+<div class="jumbotron">
+    <h1 class="text-center">
+        Bem vindo ao Contatooh!
+    </h1>
+</div>
+
+<div class="alert alert-danger" ng-show="mensagem.texto">
+    {{ mensagem.texto }}
+</div>
+
+<div>
+    <a ng-href="#!/contato" class="btn btn-outline-primary">Novo</a>
+</div>
+<br>
+<div class="alert alert-info" ng-show="contatos.length" role="alert">
+    Contatos cadastrados: {{contatos.length }}
+</div>
+
+<div class="alert alert-info" ng-hide="contatos.length" role="alert">
+    Não há contatos cadastrados!
+</div>
+
+<input class="form-control" ng-model="filtro" type="search" placeholder="Pesquisar por nome">
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>NOME</th>
+            <th>E-MAIL</th>
+            <th class="text-center">Ação</th>
+        </tr>
+
+        <tr ng-repeat="contato in contatos | filter: filtro">
+            <td>
+                <a ng-href="#!/contato/{{contato._id}}">{{ contato.nome }}</a>
+            </td>
+            <td>{{ contato.email }}</td>
+            <td class="text-center">
+                <button class="btn btn-danger" ng-click="remove(contato)">Remover</button>
+            </td>
+        </tr>
+    </table>
+</div>
